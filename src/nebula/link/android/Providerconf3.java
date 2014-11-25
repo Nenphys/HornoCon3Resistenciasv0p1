@@ -158,10 +158,13 @@ public class Providerconf3 extends Activity {
 				}
 			}
 		});
-       
-        
-        
+
+
        PantallaPrincipal.setVisibility(View.INVISIBLE);
+
+
+
+
         try {
 			ConfiguraPuertoSerial();
 			} catch (SecurityException e) {
@@ -460,6 +463,7 @@ public class Providerconf3 extends Activity {
 					e.printStackTrace();
 			}
 		}
+
 	}
 	
 /* ================================================================================================== */
@@ -670,7 +674,12 @@ public class Providerconf3 extends Activity {
 //											double Tctrans =TiempototalDeCuraro-(double)((65535-Integer.valueOf(temp.substring(86,90),16))/60);
 											float Tctrans =(float) (TiempototalDeCuraro-((65535-(float)Integer.valueOf(temp.substring(86,90),16))/60));
 											DecimalFormat  decimal = new DecimalFormat("#.#");
-											TCtranscurrido.setText(""+decimal.format(Tctrans)+" de "+totalminTC.getText());
+                                            if (Tctrans <= 0){
+                                                TCtranscurrido.setText("-- de "+totalminTC.getText());
+                                            }else{
+                                                TCtranscurrido.setText(""+decimal.format(Tctrans)+" de "+totalminTC.getText());
+                                            }
+
 											}catch (StringIndexOutOfBoundsException e) {
 												// TODO: handle exception
 											}
